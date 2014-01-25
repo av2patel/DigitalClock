@@ -1,0 +1,61 @@
+<html>
+<head>
+<style type="text/css">
+.clockStlye {
+	height: auto;
+	width: 300px;
+	padding: 40px;
+	font-family: verdana, arial, sans-serif;
+	font-size: 30px;
+	color: white;
+	border: white 3px inset;
+	background-color: black;
+	text-align: center;
+	border-radius: 20px;
+}
+</style>
+
+
+
+
+</head>
+<body onload="showRealTime()">
+<h2>Amish's Digital Clock</h2>
+<div id="clock" class="clockStlye"></div>
+<script type="text/javascript" language="javascript">
+
+
+
+	function showRealTime(){
+		var currentTime = new Date();
+		var currentHour = currentTime.getHours();
+		var currentMin = currentTime.getMinutes();
+		var currentSec = currentTime.getSeconds();
+		var mer = "AM";
+
+		if (currentHour > 12){
+			currentHour = currentHour - 12;
+			mer = "PM";
+		}
+		else if (currentHour == 0){
+			currentHour = 12;
+		}
+		currentHour = checkTime(currentHour);
+		currentSec = checkTime(currentSec);
+		currentMin = checkTime(currentMin);
+		setTimeout('showRealTime()',1000);
+		var clock = document.getElementById('clock');
+		clock.textContent = currentHour + ":" + currentMin + ":" + currentSec + " " + mer;
+	}
+
+	function checkTime(time){
+		if (time < 10){
+			time = "0" + time;
+		}
+		return time;
+	}
+	showRealTime();
+
+</script>
+</body>
+</html>
